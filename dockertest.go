@@ -346,7 +346,8 @@ func (d *Pool) BuildAndRunWithBuildOptions(buildOpts *BuildOptions, runOpts *Run
 		return nil, errors.Wrap(err, "")
 	}
 
-	runOpts.Repository = runOpts.Name
+	nameTag := strings.Split(runOpts.Name, ":")
+	runOpts.Name = nameTag[0]
 
 	return d.RunWithOptions(runOpts, hcOpts...)
 }
